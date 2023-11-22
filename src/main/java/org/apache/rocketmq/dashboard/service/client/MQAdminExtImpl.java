@@ -27,6 +27,7 @@ import org.apache.rocketmq.client.exception.MQBrokerException;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.impl.MQAdminImpl;
 import org.apache.rocketmq.common.AclConfig;
+import org.apache.rocketmq.common.Pair;
 import org.apache.rocketmq.common.PlainAccessConfig;
 import org.apache.rocketmq.common.TopicConfig;
 import org.apache.rocketmq.remoting.protocol.admin.ConsumeStats;
@@ -38,25 +39,7 @@ import org.apache.rocketmq.common.message.MessageQueue;
 import org.apache.rocketmq.common.message.MessageRequestMode;
 import org.apache.rocketmq.remoting.protocol.RequestCode;
 import org.apache.rocketmq.remoting.protocol.ResponseCode;
-import org.apache.rocketmq.remoting.protocol.body.BrokerReplicasInfo;
-import org.apache.rocketmq.remoting.protocol.body.BrokerStatsData;
-import org.apache.rocketmq.remoting.protocol.body.ClusterAclVersionInfo;
-import org.apache.rocketmq.remoting.protocol.body.ClusterInfo;
-import org.apache.rocketmq.remoting.protocol.body.ConsumeMessageDirectlyResult;
-import org.apache.rocketmq.remoting.protocol.body.ConsumeStatsList;
-import org.apache.rocketmq.remoting.protocol.body.ConsumerConnection;
-import org.apache.rocketmq.remoting.protocol.body.ConsumerRunningInfo;
-import org.apache.rocketmq.remoting.protocol.body.EpochEntryCache;
-import org.apache.rocketmq.remoting.protocol.body.GroupList;
-import org.apache.rocketmq.remoting.protocol.body.HARuntimeInfo;
-import org.apache.rocketmq.remoting.protocol.body.KVTable;
-import org.apache.rocketmq.remoting.protocol.body.ProducerConnection;
-import org.apache.rocketmq.remoting.protocol.body.ProducerTableInfo;
-import org.apache.rocketmq.remoting.protocol.body.QueryConsumeQueueResponseBody;
-import org.apache.rocketmq.remoting.protocol.body.QueueTimeSpan;
-import org.apache.rocketmq.remoting.protocol.body.SubscriptionGroupWrapper;
-import org.apache.rocketmq.remoting.protocol.body.TopicConfigSerializeWrapper;
-import org.apache.rocketmq.remoting.protocol.body.TopicList;
+import org.apache.rocketmq.remoting.protocol.body.*;
 import org.apache.rocketmq.remoting.protocol.header.controller.ElectMasterResponseHeader;
 import org.apache.rocketmq.remoting.protocol.header.controller.GetMetaDataResponseHeader;
 import org.apache.rocketmq.remoting.protocol.heartbeat.SubscriptionData;
@@ -826,8 +809,7 @@ public class MQAdminExtImpl implements MQAdminExt {
     }
 
     @Override
-    public ElectMasterResponseHeader electMaster(String controllerAddr, String clusterName, String brokerName,
-            String brokerAddr) throws RemotingException, InterruptedException, MQBrokerException {
+    public Pair<ElectMasterResponseHeader, BrokerMemberGroup> electMaster(String controllerAddr, String clusterName, String brokerName, Long brokerId) throws RemotingException, InterruptedException, MQBrokerException {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'electMaster'");
     }
@@ -838,5 +820,25 @@ public class MQAdminExtImpl implements MQAdminExt {
             throws RemotingException, InterruptedException, MQBrokerException {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'cleanControllerBrokerData'");
+    }
+
+    @Override
+    public void updateColdDataFlowCtrGroupConfig(String brokerAddr, Properties properties) throws RemotingConnectException, RemotingSendRequestException, RemotingTimeoutException, UnsupportedEncodingException, InterruptedException, MQBrokerException {
+
+    }
+
+    @Override
+    public void removeColdDataFlowCtrGroupConfig(String brokerAddr, String consumerGroup) throws RemotingConnectException, RemotingSendRequestException, RemotingTimeoutException, UnsupportedEncodingException, InterruptedException, MQBrokerException {
+
+    }
+
+    @Override
+    public String getColdDataFlowCtrInfo(String brokerAddr) throws RemotingConnectException, RemotingSendRequestException, RemotingTimeoutException, UnsupportedEncodingException, InterruptedException, MQBrokerException {
+        return null;
+    }
+
+    @Override
+    public String setCommitLogReadAheadMode(String brokerAddr, String mode) throws RemotingConnectException, RemotingSendRequestException, RemotingTimeoutException, UnsupportedEncodingException, InterruptedException, MQBrokerException {
+        return null;
     }
 }
